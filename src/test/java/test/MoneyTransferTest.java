@@ -52,8 +52,20 @@ public class MoneyTransferTest {
         assertEquals(firstBalanceBefore - sum, dashboardPage.getFirstCardBalance());
         assertEquals(secondBalanceBefore + sum, dashboardPage.getSecondCardBalance());
     }
+
+    @Test
+    void shouldTransferMoneyOverLimit2() {
+        var dashboardPage = new DashboardPage();
+        var cardsInfo = DataHelper.getCardsInfo();
+        int firstBalanceBefore = dashboardPage.getFirstCardBalance();
+        int secondBalanceBefore = dashboardPage.getSecondCardBalance();
+        int sum = 20000;
+
+        var transferPage = dashboardPage.secondCardButton();
+        transferPage.makeTransfer(Integer.toString(sum), cardsInfo);
+
+        assertEquals(firstBalanceBefore, dashboardPage.getFirstCardBalance());
+        assertEquals(secondBalanceBefore + sum, dashboardPage.getSecondCardBalance());
+
+    }
 }
-
-
-
-
