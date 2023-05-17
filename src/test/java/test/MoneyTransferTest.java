@@ -60,7 +60,7 @@ public class MoneyTransferTest {
         int secondBalanceBefore = dashboardPage.getSecondCardBalance();
         int sum = 20000;
 
-        var transferPage = dashboardPage.secondCardButton();
+        var transferPage = dashboardPage.firstCardButton();
         transferPage.makeTransfer(Integer.toString(sum), cardsInfo);
 
         assertEquals(firstBalanceBefore, dashboardPage.getFirstCardBalance());

@@ -23,14 +23,11 @@ public class TransferPage {
 
     public DashboardPage makeTransfer(String sum, DataHelper.CardsInfo cardsInfo) {
         amount.setValue(sum);
-        from.setValue(String.valueOf(cardsInfo));
+        from.setValue(cardsInfo.getCardInfo());
         transferButton.click();
         return new DashboardPage();
     }
-//    public DashboardPage makeSuccessTransfer(String sum, DataHelper.CardsInfo cardsInfo) {
-//        makeTransfer(sum, cardsInfo);
-//        return new DashboardPage();
-//    }
+
     public void getError() {
         $(withText("Ошибка! ")).shouldBe(visible, Duration.ofSeconds(10));
     }
