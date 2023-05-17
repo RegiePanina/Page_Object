@@ -1,6 +1,7 @@
 package data;
 
 import lombok.Value;
+import org.checkerframework.checker.units.qual.C;
 
 public class DataHelper {
     private DataHelper() {
@@ -31,12 +32,14 @@ public class DataHelper {
 
     @Value
     public static class CardsInfo {
-        private String first;
-        private String second;
+        private String cardInfo;
     }
 
-    public static CardsInfo getCardsInfo() {
-        return new CardsInfo("5559 0000 0000 0001", "5559 0000 0000 0002");
+    public static CardsInfo getFirstCard() {
+        return new CardsInfo("5559 0000 0000 0001");
+    }
 
+    public static CardsInfo getSecondCard() {
+        return new CardsInfo("5559 0000 0000 0002");
     }
 }

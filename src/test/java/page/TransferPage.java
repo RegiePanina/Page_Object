@@ -23,18 +23,27 @@ public class TransferPage {
 
     public DashboardPage makeTransfer(String sum, DataHelper.CardsInfo cardsInfo) {
         amount.setValue(sum);
-        from.setValue(cardsInfo.getFirst());
+        from.setValue(String.valueOf(cardsInfo));
         transferButton.click();
         return new DashboardPage();
     }
-    public DashboardPage makeSuccessTransfer(String sum, DataHelper.CardsInfo cardsInfo) {
-        makeTransfer(sum, cardsInfo);
-        return new DashboardPage();
-    }
+//    public DashboardPage makeSuccessTransfer(String sum, DataHelper.CardsInfo cardsInfo) {
+//        makeTransfer(sum, cardsInfo);
+//        return new DashboardPage();
+//    }
     public void getError() {
         $(withText("Ошибка! ")).shouldBe(visible, Duration.ofSeconds(10));
     }
+    //
 
-// возможно, нужно еще дописать
-
+    public void clearFields() {
+        amount.clear();
+        from.clear();
+    }
+    public String getErrorNotificationMessage() {
+        return errorNotification.getText();
+    }
+    public void dismissErrorNotification() {
+        errorButton.click();
+    }
 }

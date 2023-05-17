@@ -25,38 +25,37 @@ public class MoneyTransferTest {
     @Test
     void shouldTransferMoneyBetweenOwnCards1() {
         var dashboardPage = new DashboardPage();
-        var cardsInfo = DataHelper.getCardsInfo();
+        var cardsInfo = DataHelper.getSecondCard();
         int firstBalanceBefore = dashboardPage.getFirstCardBalance();
         int secondBalanceBefore = dashboardPage.getSecondCardBalance();
         int sum = 100;
 
         var transferPage = dashboardPage.firstCardButton();
-        transferPage.makeTransfer(Integer.toString(sum), cardsInfo);
+        transferPage.makeTransfer(String.valueOf(sum), cardsInfo);
 
         assertEquals(firstBalanceBefore + sum, dashboardPage.getFirstCardBalance());
         assertEquals(secondBalanceBefore - sum, dashboardPage.getSecondCardBalance());
     }
 
-
     @Test
     void shouldTransferMoneyBetweenOwnCards2() {
         var dashboardPage = new DashboardPage();
-        var cardsInfo = DataHelper.getCardsInfo();
+        var cardsInfo = DataHelper.getFirstCard();
         int firstBalanceBefore = dashboardPage.getFirstCardBalance();
         int secondBalanceBefore = dashboardPage.getSecondCardBalance();
         int sum = 5000;
 
         var transferPage = dashboardPage.secondCardButton();
-        transferPage.makeTransfer(Integer.toString(sum), cardsInfo);
+        transferPage.makeTransfer(String.valueOf(sum), cardsInfo);
 
         assertEquals(firstBalanceBefore - sum, dashboardPage.getFirstCardBalance());
         assertEquals(secondBalanceBefore + sum, dashboardPage.getSecondCardBalance());
     }
 
     @Test
-    void shouldTransferMoneyOverLimit2() {
+    void shouldTransferMoneyOverLimit() {
         var dashboardPage = new DashboardPage();
-        var cardsInfo = DataHelper.getCardsInfo();
+        var cardsInfo = DataHelper.getSecondCard();
         int firstBalanceBefore = dashboardPage.getFirstCardBalance();
         int secondBalanceBefore = dashboardPage.getSecondCardBalance();
         int sum = 20000;
@@ -65,7 +64,7 @@ public class MoneyTransferTest {
         transferPage.makeTransfer(Integer.toString(sum), cardsInfo);
 
         assertEquals(firstBalanceBefore, dashboardPage.getFirstCardBalance());
-        assertEquals(secondBalanceBefore + sum, dashboardPage.getSecondCardBalance());
+        assertEquals(secondBalanceBefore, dashboardPage.getSecondCardBalance());
 
     }
 }
